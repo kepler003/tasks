@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src/scripts/app.js --out-file=public/scripts/index.js --watch",
+    "build": "babel src/scripts/index.js --out-file=public/scripts/index.js --watch",
     "sass": "sass src/styles/index.scss public/styles/index.css --watch"
   },
   "author": "Bartłomiej Pyzocha",
