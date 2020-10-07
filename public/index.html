@@ -7,52 +7,50 @@
   <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
+
   <main class="app">
-    
-    <div class="panel">
+  
+    <header class="employee">
+      
+      <form class="employee__form">
 
-      <header class="employee">
-        
-        <form class="employee__form">
+        <div class="input__box">
+          <input class="input">
+          <label class="input__label">Nazwa firmy</label>
+        </div>
 
-          <div class="input__box">
-            <input class="input">
-            <label class="input__label">Nazwa firmy</label>
-          </div>
+        <div class="input__box">
+          <input class="input select" readonly>
+          <label class="input__label">Pracownik</label>
+          <i class="fas fa-chevron-down input__icon"></i>
+        </div>
 
-          <div class="input__box">
-            <input class="input select" readonly>
-            <label class="input__label">Pracownik</label>
-            <i class="fas fa-chevron-down input__icon"></i>
-          </div>
+      </form>
+    </header>
 
-        </form>
+    <artice class="add-task">
+
+      <header class="add-task__header">
+        <h2 class="add-task__heading">Zadania</h2>
       </header>
 
-      <section class="add-task">
+      <form class="add-task__form">
 
-        <header class="add-task__header">
-          <h2 class="add-task__heading">Zadania</h2>
-        </header>
+        <div class="input__box">
+          <input class="input">
+          <label class="input__label">Nazwa zadania</label>
+        </div>
 
-        <form class="add-task__form">
+        <div class="input__box">
+          <input class="input--number" type="number">
+          <label class="input__label">Kwota w PLN</label>
+        </div>
 
-          <div class="input__box">
-            <input class="input">
-            <label class="input__label">Nazwa zadania</label>
-          </div>
+        <p class="add-task__rate">1 euro = 4.8282</p>
+        <button class="add-task__submit button--primary button--w">Dodaj</button>
 
-          <div class="input__box">
-            <input class="input--number" type="number">
-            <label class="input__label">Kwota w PLN</label>
-          </div>
-
-          <p class="add-task__rate">1 euro = 4.8282</p>
-          <button class="add-task__submit button--primary button--w">Dodaj</button>
-
-        </form>
-      </section>
-    </div>
+      </form>
+    </artice>
 
     <article class="tasks">
 
@@ -108,6 +106,7 @@
     </article>
 
   </main>
+  
   <script src="scripts/bundle.min.js"></script>
 </body>
 </html>

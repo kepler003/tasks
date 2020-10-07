@@ -2,6 +2,7 @@
 .add-task {
   @include flex;
   width: 100%;
+  max-width: $size-13;
 
   &__header {
     @include flex;
