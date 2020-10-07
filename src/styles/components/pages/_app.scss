@@ -1,0 +1,5 @@
+
+.app {
+  @include flex-column;
+  padding: $size;
+}
