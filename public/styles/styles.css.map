@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../src/styles/config/_config.scss"],"names":[],"mappings":"AACA,EACE,sBACA,SACA","file":"styles.css"}
+{"version":3,"sourceRoot":"","sources":["../../src/styles/config/_reset.scss"],"names":[],"mappings":"AAAA,EACE,sBACA,eACA,SACA,UAGF,2ZAaC,SACA,eACA,aACA,wBAGD,8EAEC,cAED,KACE,cAEF,MACC,gBAED,aACC,YAED,oDAEC,WACA,aAED,MACC,yBACA","file":"styles.css"}
