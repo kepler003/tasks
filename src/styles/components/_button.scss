@@ -1,0 +1,39 @@
+
+.button {
+  @include flex-center;
+  height: $input-height;
+  padding: 0 $size-sm;
+  background-color: $gray-900;
+  border-radius: $border-radius-sm;
+  transition: 150ms ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($gray-900, 3%);
+  }
+  
+  &:focus {
+    background-color: darken($gray-900, 3%);
+  }
+  
+  &--w {
+    min-width: $size-9;
+    
+    &-icon { width: $input-height; }
+  }
+  
+  &--primary {
+    @extend .button;
+    background-color: $primary;
+    color: $white;
+  
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($primary, 7%);
+    }
+    
+    &:focus {
+      background-color: lighten($primary, 7%);
+    }
+  }
+}

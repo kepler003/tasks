@@ -1,0 +1,23 @@
+
+.add-task {
+  @include flex;
+  width: 100%;
+
+  &__header {
+    @include flex;
+    padding: $size-sm;
+  }
+
+  &__form {
+    @include flex;
+    width: 100%;
+  }
+
+  &__rate {
+    margin-left: $size-sm;
+  }
+
+  &__submit {
+    margin-left: auto;
+  }
+}

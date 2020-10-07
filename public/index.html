@@ -12,6 +12,7 @@
     <div class="panel">
 
       <header class="employee">
+        
         <form class="employee__form">
 
           <div class="input__box">
@@ -24,7 +25,7 @@
             <input class="input select" readonly>
             <label class="input__label">Pracownik</label>
             <i class="fas fa-chevron-down input__icon"></i>
-            <div class="select__box">
+            <!-- <div class="select__box">
               <div class="select__header">
                 <div class="input__box input__box--no-margin">
                   <input class="input--search input--gray" placeholder="Szukaj">
@@ -46,23 +47,33 @@
                   </div>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </div>
 
         </form>
       </header>
 
-      <article style="opacity: 0;">
+      <article class="add-task">
 
-        <header>
-          <h2>Zadania</h2>
+        <header class="add-task__header">
+          <h2 class="add-task__heading">Zadania</h2>
         </header>
 
-        <form>
-          <input>
-          <input>
-          <p>1 euro = 4.8282</p>
-          <button>Dodaj</button>
+        <form class="add-task__form">
+
+          <div class="input__box">
+            <input class="input">
+            <label class="input__label">Nazwa zadania</label>
+          </div>
+
+          <div class="input__box">
+            <input class="input--number" type="number">
+            <label class="input__label">Kwota w PLN</label>
+          </div>
+
+          <p class="add-task__rate">1 euro = 4.8282</p>
+          <button class="add-task__submit button--primary button--w">Dodaj</button>
+
         </form>
       </article>
     </div>

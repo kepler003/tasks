@@ -1,4 +1,6 @@
 
 .panel {
   @include flex-column;
+  width: 100%;
+  max-width: $panel-width;
 }
