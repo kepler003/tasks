@@ -28,12 +28,62 @@
     color: $white;
   
     &:hover {
-      cursor: pointer;
       background-color: lighten($primary, 7%);
     }
     
     &:focus {
       background-color: lighten($primary, 7%);
+    }
+  }
+  
+  &--transparent {
+    @extend .button;
+    background-color: transparent;
+    color: $text-color;
+  
+    &:hover {
+      background-color: transparent;
+    }
+    
+    &:focus {
+      background-color: hsla(0, 0%, 0%, 0.04);
+    }
+  }
+
+  &--no-style {
+    @extend .button;
+    background-color: transparent;
+    color: $text-color;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &__icon {
+    color: $gray-500;
+
+    &--left { margin-right: $size-sm; }
+    &--right { margin-left: $size-sm; }
+
+    &--triangle-up {
+      width: 0;
+      height: 0;
+      border-left: $size-sm / 2 solid transparent;
+      border-right: $size-sm / 2 solid transparent;
+      border-bottom: $size-sm / 1.7 solid $gray-500;
+    }
+
+    &--triangle-down {
+      @extend .button__icon--triangle-up;
+      border-left: $size-sm / 2 solid transparent;
+      border-right: $size-sm / 2 solid transparent;
+      border-top: $size-sm / 1.7 solid $gray-500;
+      border-bottom: 0;
     }
   }
 }

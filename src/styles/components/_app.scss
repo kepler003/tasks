@@ -2,4 +2,5 @@
 .app {
   @include flex-column;
   padding: $size;
+  padding-bottom: $size-10;
 }

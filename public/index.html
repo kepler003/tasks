@@ -53,7 +53,7 @@
         </form>
       </header>
 
-      <article class="add-task">
+      <section class="add-task">
 
         <header class="add-task__header">
           <h2 class="add-task__heading">Zadania</h2>
@@ -75,10 +75,89 @@
           <button class="add-task__submit button--primary button--w">Dodaj</button>
 
         </form>
-      </article>
+      </section>
     </div>
 
-    <div></div>
+    <article class="tasks">
+
+      <table class="tasks__table">
+
+        <thead>
+          <tr class="tasks__row">
+            <th scope="col" class="tasks__th tasks__cell">
+              <div class="tasks__cell-box">
+                <span>Nazwa zadania</span>
+                <div class="tasks__th-buttons">
+                  <button class="tasks__th-button button--no-style"><span class="button__icon--triangle-up"></span></button>
+                  <button class="tasks__th-button button--no-style"><span class="button__icon--triangle-down"></span></button>
+                </div>
+              </div>
+            </th>
+            <th scope="col" class="tasks__th tasks__cell">
+              <div class="tasks__cell-box">
+                <span>Kwota w PLN</span>
+                <div class="tasks__th-buttons">
+                  <button class="tasks__th-button button--no-style"><span class="button__icon--triangle-up"></span></button>
+                  <button class="tasks__th-button button--no-style"><span class="button__icon--triangle-down"></span></button>
+                </div>
+              </div>
+            </th>
+            <th scope="col" class="tasks__th tasks__cell">
+              <div class="tasks__cell-box">
+                <span>Kwota w EUR</span>
+                <div class="tasks__th-buttons">
+                  <button class="tasks__th-button button--no-style"><span class="button__icon--triangle-up"></span></button>
+                  <button class="tasks__th-button button--no-style"><span class="button__icon--triangle-down"></span></button>
+                </div>
+              </div>
+            </th>
+            <th scope="col" class="tasks__th tasks__cell">
+              <div class="tasks__cell-box tasks__cell-box--center">
+                <span>Opcje</span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="tasks__row">
+            <th scope="row" class="tasks__th tasks__cell">Zadanie 1</th>
+            <td class="tasks__cell">2 121 PLN</td>
+            <td class="tasks__cell">122 EUR</td>
+            <td class="tasks__cell">
+              <button class="tasks__button button--transparent">
+                <i class="fas fa-trash button__icon button__icon--left"></i> Usuń
+              </button>
+            </td>
+          </tr>
+          <tr class="tasks__row">
+            <th scope="row" class="tasks__th tasks__cell">Zadanie 2</th>
+            <td class="tasks__cell">2 121 PLN</td>
+            <td class="tasks__cell">122 EUR</td>
+            <td class="tasks__cell">
+              <button class="tasks__button button--transparent">
+                <i class="fas fa-trash button__icon button__icon--left"></i> Usuń
+              </button>
+            </td>
+          </tr>
+          <tr class="tasks__row">
+            <th scope="row" class="tasks__th tasks__cell  tasks__cell--no-border">Zadanie 3</th>
+            <td class="tasks__cell tasks__cell--no-border">2 121 PLN</td>
+            <td class="tasks__cell tasks__cell--no-border">122 EUR</td>
+            <td class="tasks__cell tasks__cell--no-border">
+              <button class="tasks__button button--transparent">
+                <i class="fas fa-trash button__icon button__icon--left"></i> Usuń
+              </button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <p class="tasks__sum">Suma: 5 664 PLN (1 546 Euro)</p>
+    
+    </article>
+
   </main>
   <script src="scripts/bundle.min.js"></script>
 </body>

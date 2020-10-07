@@ -1,0 +1,63 @@
+
+.tasks {
+  @include flex;
+  width: 100%;
+  max-width: $size-16;
+  margin-top: $size-xl;
+
+  &__table {
+    width: 100%;
+    border: 1px solid $table-border-color;
+    border-radius: $border-radius-sm;
+    border-collapse: separate;
+    overflow: hidden;
+  }
+  
+  &__row {
+    margin-bottom: 10px;
+  }
+
+  &__cell {
+    padding: $size-lg;
+    text-align: start;
+    border-bottom: 1px solid $table-border-color;
+
+    &--no-border {
+      border: 0;
+    }
+  }
+
+  &__cell-box {
+    @include flex;
+    width: 100%;
+    height: 100%;
+
+    &--center {
+      @include flex-center;
+    }
+  }
+  
+  &__th {
+    
+    & span {
+      font-weight: 600;
+    }
+
+    &-buttons {
+      margin-left: $size-sm;
+    }
+
+    &-button {
+      padding: $size-xs / 2;
+    }
+  }
+
+  &__button {
+    height: auto;
+  }
+
+  &__sum {
+    padding: $size-lg;
+    font-size: $sum-font-size;
+  }
+}
