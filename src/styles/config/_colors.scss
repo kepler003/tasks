@@ -1,8 +1,9 @@
 
 // General
 
-$primary:   black;
-$secondary: black;
+$primary:  hsl(207deg, 100%, 25%);
+$secondary:hsl(214deg, 47%, 97%);
+$tertiary: hsl(217deg, 61%, 90%);
 
 $success: hsl(118deg, 69%, 54%);
 $warning: hsl(46deg, 100%, 59%);
@@ -25,3 +26,6 @@ $gray-900: hsl(0deg, 0%, 95%);
 // Specific
 
 $text-color: $gray-300;
+$text-color-light: $gray-600;
+
+$input-border-color: $gray-800;

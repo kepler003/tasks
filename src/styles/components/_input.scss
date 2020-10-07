@@ -1,0 +1,49 @@
+
+.input {
+
+  width: 100%;
+  height: $input-size;
+  padding: 0 $input-padding-x;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: 150ms ease-out;
+
+  &:focus {
+    border: 1px solid $primary;
+  }
+  
+  &__box {
+    @include flex-center;
+    width: 100%;
+    margin: $size-sm;
+    position: relative;
+  }
+
+  &__label {
+    color: $text-color-light;
+    transition: 150ms ease-in-out;
+    transform: translate(0, 50%);
+    position: absolute;
+    top: 0;
+    left: $size-sm;
+  }
+
+  &:focus   + &__label,
+  &--filled + &__label {
+    padding: 0 $size-xs / 2;
+    background-color: $white;
+    color: $primary;
+    font-size: $size-sm;
+    font-weight: 600;
+    transform: translate(-$size-sm / 2, -50%);
+  }
+
+  &__error {
+    width: 100%;
+    padding: $size-xs;
+    padding-bottom: 0;
+    color: $danger;
+    font-size: $size-sm;
+    font-weight: 600;
+  }
+}

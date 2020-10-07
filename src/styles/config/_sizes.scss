@@ -36,3 +36,8 @@ $h3: $size-4 + $size-4 * 3 * $h-multiplier;
 $h4: $size-4 + $size-4 * 2 * $h-multiplier;
 $h5: $size-4 + $size-4 * 1 * $h-multiplier;
 $h6: $size-4;
+
+$input-size: $size-6;
+$input-padding-x: $size-3;
+
+$input-border-radius: $size-1;

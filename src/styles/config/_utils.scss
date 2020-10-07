@@ -27,3 +27,7 @@
   @include flex;
   flex-flow: column wrap;
 }
+
+.border {
+  border: 1px solid red;
+}
