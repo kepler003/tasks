@@ -2,8 +2,8 @@
 // General
 
 $primary:  hsl(207deg, 100%, 25%);
-$secondary:hsl(214deg, 47%, 97%);
-$tertiary: hsl(217deg, 61%, 90%);
+$secondary: hsl(217deg, 61%, 90%);
+$tertiary:hsl(214deg, 47%, 97%);
 
 $success: hsl(118deg, 69%, 54%);
 $warning: hsl(46deg, 100%, 59%);
@@ -19,13 +19,14 @@ $gray-400: hsl(0deg, 0%, 38.75%);
 $gray-500: hsl(0deg, 0%, 50%);
 $gray-600: hsl(0deg, 0%, 61.25%);
 $gray-700: hsl(0deg, 0%, 72.5%);
-$gray-800: hsl(0deg, 0%, 83.75%);
-$gray-900: hsl(0deg, 0%, 95%);
+$gray-800: hsl(0deg, 0%, 84.75%);
+$gray-900: hsl(0deg, 0%, 96%);
 
 
 // Specific
 
-$text-color: $gray-300;
+$text-color:       $gray-300;
 $text-color-light: $gray-600;
 
 $input-border-color: $gray-800;
+$input-icon-color:   $gray-700;

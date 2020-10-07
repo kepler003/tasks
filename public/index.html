@@ -15,19 +15,44 @@
         <form class="employee__form">
 
           <div class="input__box">
-            <input class="input input--text">
+            <input class="input">
             <label class="input__label">Nazwa firmy</label>
             <!-- <span class="input__error">Błąd</span> -->
           </div>
 
           <div class="input__box">
-            <input class="input input--select">
+            <input class="input select" readonly>
             <label class="input__label">Pracownik</label>
+            <i class="fas fa-chevron-down input__icon"></i>
+            <div class="select__box">
+              <div class="select__header">
+                <div class="input__box input__box--no-margin">
+                  <input class="input--search input--gray" placeholder="Szukaj">
+                  <i class="fas fa-search input__icon"></i>
+                </div>
+              </div>
+              <ul class="select__list">
+                <li class="select__list-item">
+                  <div class="user-card">
+                    <img src="" alt="User avatar" class="user-card__avatar">
+                    <p class="user-card__name">Adam Nowak</p>
+                  </div>
+                </li>
+                <li class="select__list-item">
+                  <div class="user-card user-card--isChosen">
+                    <img src="" alt="User avatar" class="user-card__avatar">
+                    <p class="user-card__name">Adam Nowak</p>
+                    <i class="fas fa-check user-card__icon"></i>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
+
         </form>
       </header>
 
-      <article>
+      <article style="opacity: 0;">
 
         <header>
           <h2>Zadania</h2>

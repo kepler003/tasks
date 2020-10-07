@@ -1,0 +1,33 @@
+
+.user-card {
+  @include flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: $size-xs $size;
+
+  &__avatar {
+    width: $size-xl;
+    height: $size-xl;
+    border-radius: $border-radius-max;
+    overflow: hidden;
+  }
+
+  &__name {
+    margin: 0 auto 0 $size;
+  }
+
+  &__icon {
+    color: $primary;
+  }
+
+  &--isChosen {
+
+    .user-card {
+
+      &__name {
+        color: $primary;
+        font-weight: 600;
+      }
+    }
+  }
+}

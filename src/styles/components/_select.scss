@@ -1,0 +1,45 @@
+
+.select {
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__box {
+    @include flex;
+    width: 100%;
+    margin-top: $size-sm;
+    background-color: $white;
+    border: 1px solid $secondary;
+    border-radius: $border-radius-sm;
+    box-shadow: $shadow-xs;
+  }
+
+  &__header {
+    width: 100%;
+    padding: $size-sm;
+    border-bottom: 1px solid $secondary;
+  }
+
+  &__list {
+    @include flex;
+    width: 100%;
+    max-height: $size-12;
+    padding: $size-sm 0;
+
+    &--scroll {
+      overflow-y: scroll;
+    }
+  }
+
+  &__list-item {
+    @include flex;
+    width: 100%;
+    transition: 150ms ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $tertiary;
+    }
+  }
+}

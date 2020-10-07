@@ -1,6 +1,5 @@
 
 .input {
-
   width: 100%;
   height: $input-size;
   padding: 0 $input-padding-x;
@@ -12,14 +11,29 @@
     border: 1px solid $primary;
   }
   
+  &--gray {
+    border: 1px solid transparent;
+    background-color: $gray-900;
+  }
+
+  &--search {
+    @extend .input;
+    padding-right: $size-6;
+  }
+
+  &::placeholder { color: $text-color-light; }
+  
   &__box {
-    @include flex-center;
+    @include flex;
     width: 100%;
     margin: $size-sm;
     position: relative;
+
+    &--no-margin { margin: 0; }
   }
 
   &__label {
+    pointer-events: none;
     color: $text-color-light;
     transition: 150ms ease-in-out;
     transform: translate(0, 50%);
@@ -28,14 +42,24 @@
     left: $size-sm;
   }
 
-  &:focus   + &__label,
-  &--filled + &__label {
-    padding: 0 $size-xs / 2;
+  &:focus     + &__label,
+  &--hasFocus + &__label,
+  &--hasValue + &__label {
+    padding: 0 $size-xs;
     background-color: $white;
     color: $primary;
     font-size: $size-sm;
     font-weight: 600;
     transform: translate(-$size-sm / 2, -50%);
+  }
+
+  &__icon {
+    pointer-events: none;
+    color: $input-icon-color;
+    transform: translate(-$size-sm, 50%);
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   &__error {

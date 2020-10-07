@@ -2,10 +2,11 @@
 .employee {
   @include flex;
   width: 100%;
+  max-width: $size-13;
   padding: $size-xs;
 
   &__form {
-    @include flex-column;
+    @include flex;
     width: 100%;
   }
 }

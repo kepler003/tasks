@@ -1,22 +1,23 @@
 
 // General
 
-$size-1: 4px;
-$size-2: 8px;
-$size-3: 12px;
-$size-4: 16px;
-$size-5: 24px;
-$size-6: 32px;
-$size-7: 48px;
-$size-8: 64px;
-$size-9: 96px;
-$size-10: 128px;
-$size-11: 192px;
-$size-12: 256px;
-$size-13: 384px;
-$size-14: 512px;
-$size-15: 640px;
-$size-16: 768px;
+$size-1:   4px;
+$size-2:   8px;
+$size-3:   12px;
+$size-4:   16px;
+$size-5:   24px;
+$size-6:   32px;
+$size-7:   48px;
+$size-8:   64px;
+$size-9:   96px;
+$size-10:  128px;
+$size-11:  192px;
+$size-12:  256px;
+$size-13:  384px;
+$size-14:  512px;
+$size-15:  640px;
+$size-16:  768px;
+$size-max: 10000px;
 
 
 // Specific
@@ -26,6 +27,11 @@ $size-sm: $size-3;
 $size:    $size-4;
 $size-lg: $size-5;
 $size-xl: $size-7;
+
+$border-radius-sm:  $size-1;
+$border-radius:     $size-2;
+$border-radius-lg:  $size-3;
+$border-radius-max: $size-max;
 
 $font-size: $size-4;
 
@@ -39,5 +45,4 @@ $h6: $size-4;
 
 $input-size: $size-6;
 $input-padding-x: $size-3;
-
 $input-border-radius: $size-1;
