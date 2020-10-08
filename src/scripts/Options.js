@@ -5,18 +5,19 @@ const Option = require('./Option');
 
 class Options {
   constructor(select) {
-    this.select    = $(select);
-    this.parent    = $('body');
-    this.employees = undefined;
-    this.config    = {
+    this.select     = $(select);
+    this.parent     = $('body');
+    this.employees  = undefined;
+    this.config     = {
       "width" : `${$(select).outerWidth()}px`,
       "top"   : `${$(select).offset().top + $(select).height()}px`,
       "left"  : `${$(select).offset().left}px`
     }
-    this.template  = $(this.getTemplate()).css(this.config);
-    this.input     = this.template.find('.js-input--select-search');
-    this.list      = this.template.find('.select__list');
-    this.templates = {
+    this.template   = $(this.getTemplate()).css(this.config);
+    this.input      = this.template.find('.js-input--select-search');
+    this.searchName = undefined;
+    this.list       = this.template.find('.select__list');
+    this.templates  = {
       employees: []
     };
 
@@ -66,9 +67,13 @@ class Options {
   }
 
   searchEmployees() {
-    const name = this.input.val();
-    this.employees = searchByName(name);
+    this.searchName = this.input.val();
+    this.employees = searchByName(this.searchName);
 
+    this.updateEmployees();
+  }
+
+  updateEmployees() {
     this.removeEmployees();
     this.renderEmployees();
   }
@@ -80,7 +85,9 @@ class Options {
   }
 
   renderEmployee(employee) {
-    const employeeTemplate = new Option(employee, this.list);
+    const employeeTemplate = new Option(employee, this.list, {
+      searchEmployees: this.searchEmployees.bind(this)
+    });
     employeeTemplate.render();
     this.templates.employees.push(employeeTemplate);
   }

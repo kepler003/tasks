@@ -4,7 +4,7 @@ const {setChosenEmployee} = require('./storage');
 
 
 class Option {
-  constructor(user, parent) {
+  constructor(user, parent, config) {
     this.id       = user.id;
     this.name     = user.name;
     this.src      = user.src;
@@ -12,6 +12,8 @@ class Option {
     this.parent   = $(parent);
     this.template = $(this.getTemplate());
     this.userCard = this.template.find('.user-card');
+
+    this.searchEmployees = config.searchEmployees;
   }
 
   getTemplate() {
@@ -38,6 +40,7 @@ class Option {
 
   chooseEmployee() {
     setChosenEmployee(this.id);
+    this.searchEmployees();
   }
 
   render() {
