@@ -54,6 +54,7 @@ let storage = {
     }
   ],
   chosenEmployee: undefined,
+
   searchByName(name) {
     const employees = this.employees.filter(employee => {
       return employee.name.toLowerCase().includes(name.toLowerCase());
@@ -64,11 +65,13 @@ let storage = {
       isChosen: this.chosenEmployee === employee.id
     }))
   },
-  chooseEmployee(id) {
+
+  setChosenEmployee(id) {
     this.chosenEmployee = id;
   }
 }
 
 module.exports = {
-  searchByName: storage.searchByName.bind(storage)
+  searchByName     : storage.searchByName.bind(storage),
+  setChosenEmployee: storage.setChosenEmployee.bind(storage)
 }

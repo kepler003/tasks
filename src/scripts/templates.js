@@ -41,9 +41,7 @@ const userCardTemplate = (user, config) => {
     isChosen = false
   } = user || {};
 
-  const {
-    cardClass = ''
-  } = config || {};
+  const { cardClass = '' } = config || {};
 
   return `
     <div class="user-card ${isChosen ? 'user-card--isChosen' : ''} ${cardClass}">
