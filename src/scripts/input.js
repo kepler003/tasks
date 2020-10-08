@@ -27,7 +27,7 @@ const undoHasValue = (input) => {
 
 // Validation
 
-$('.js-input[data-validate="text"').on('keyup', (e) => {
+$('.js-input[data-validate="text"').on('keyup focusout', (e) => {
   validateText(e);
 });
 
@@ -75,7 +75,7 @@ const addError = (input, message) => {
   }
 }
 
-const removeError = (input, message) => {
+const removeError = (input) => {
   const error = $(input).siblings('.input__error')[0];
   $(error).remove();
 }
