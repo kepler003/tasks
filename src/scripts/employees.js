@@ -8,6 +8,7 @@ $(document).on('keyup', '.js-employees__search', (e) => {
   searchEmployees(e);
 })
 
+
 const searchEmployees = (e) => {
   const list = $(e.target).parents('.select__box').children('.select__list')[0];
   const name = e.target.value.trim();

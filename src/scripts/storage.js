@@ -53,7 +53,7 @@ let storage = {
       ]
     }
   ],
-  chosenEmployee: 0,
+  chosenEmployee: undefined,
   searchByName(name) {
     const employees = this.employees.filter(employee => {
       return employee.name.toLowerCase().includes(name.toLowerCase());
