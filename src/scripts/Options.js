@@ -1,23 +1,26 @@
 
 const $ = require('jquery');
 const {searchByName} = require('./storage');
+const Option = require('./Option');
 
 class Options {
   constructor(select) {
-    this.select       = $(select);
-    this.parent       = $('body');
-    this.employees    = undefined;
-    this.config       = {
+    this.select    = $(select);
+    this.parent    = $('body');
+    this.employees = undefined;
+    this.config    = {
       "width" : `${$(select).outerWidth()}px`,
       "top"   : `${$(select).offset().top + $(select).height()}px`,
       "left"  : `${$(select).offset().left}px`
     }
-    this.template     = $(this.getTemplate()).css(this.config);
-    this.input        = this.template.find('.js-input--select-search');
-    this.list         = this.template.find('.select__list');
-    this.listElements = undefined;
+    this.template  = $(this.getTemplate()).css(this.config);
+    this.input     = this.template.find('.js-input--select-search');
+    this.list      = this.template.find('.select__list');
+    this.templates = {
+      employees: []
+    };
 
-    this.setUpListeners();
+    this.addListeners();
   }
 
   getTemplate() {
@@ -32,13 +35,12 @@ class Options {
             <i class="fas fa-search input__icon"></i>
           </div>
         </div>
-        <ul class="select__list">
-        </ul>
+        <ul class="select__list"></ul>
       </div>
     `
   }
 
-  setUpListeners() {
+  addListeners() {
     $(document).on(`mouseup.options`, (e) => {
       this.checkIfClickedOutside(e);
     });
@@ -51,6 +53,10 @@ class Options {
   removeListeners() {
     $(document).off(`mouseup.options`);
     $(this.input).off(`keyup`);
+
+    this.templates.employees.forEach(templateEmployee => {
+      templateEmployee.removeListeners();
+    })
   }
 
   checkIfClickedOutside(e) {
@@ -63,6 +69,7 @@ class Options {
     const name = this.input.val();
     this.employees = searchByName(name);
 
+    this.removeEmployees();
     this.renderEmployees();
   }
 
@@ -73,7 +80,17 @@ class Options {
   }
 
   renderEmployee(employee) {
-    this.list.append(`<p>Employee</p>`)
+    const employeeTemplate = new Option(employee, this.list);
+    employeeTemplate.render();
+    this.templates.employees.push(employeeTemplate);
+  }
+
+  removeEmployees() {
+    this.templates.employees.forEach(emploeeTemplate => {
+      emploeeTemplate.remove();
+    });
+
+    this.templates.employees = [];
   }
 
   render() {
