@@ -27,6 +27,8 @@ const openSelectOptions = (e) => {
 
   $(e.target)     .data({ options: selectOptions });
   $(selectOptions).data({ select:  $(e.target) });
+
+  $(e.target).addClass('input--hasFocus');
 }
 
 const closeSelectOptions = (e) => {
@@ -36,12 +38,15 @@ const closeSelectOptions = (e) => {
   options.each((i, elem) => {
 
     const option = $(elem);
+    const select = $(option).data()['select'];
 
     if(!(!option.is(e.target) && option.has(e.target).length === 0)) return;
 
-    delete $($(option).data()['select']).data()['options'];
     delete $(option).data()['select'];
+    delete $(select).data()['options'];
 
     $(option).remove();
+
+    $(select).removeClass('input--hasFocus');
   })
 }
