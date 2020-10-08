@@ -37,7 +37,7 @@ $('.js-input[data-text]').on('keyup focusout', (e) => {
   validateText(e);
 });
 
-$('.js-input[data-filled]').on('keyup focusout', (e) => {
+$(document).on('keyup focusout', '.js-input[data-filled]:not(.input--hasFocus)', (e) => {
   validateNotEmpty(e);
 })
 
@@ -174,4 +174,9 @@ const addError = (input, message) => {
 const removeError = (input) => {
   const error = $(input).siblings('.input__error')[0];
   $(error).remove();
+}
+
+
+module.exports = {
+  makeHasValue
 }

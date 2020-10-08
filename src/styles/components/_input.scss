@@ -7,7 +7,8 @@
   border-radius: $input-border-radius;
   transition: 150ms ease-out;
   
-  &:focus {
+  &:focus,
+  &--hasFocus {
     border: 1px solid $primary;
   }
   

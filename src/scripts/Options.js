@@ -1,7 +1,8 @@
 
 const $ = require('jquery');
 const {searchByName} = require('./storage');
-const Option = require('./Option');
+const Option         = require('./Option');
+
 
 class Options {
   constructor(select) {
@@ -85,7 +86,7 @@ class Options {
   }
 
   renderEmployee(employee) {
-    const employeeTemplate = new Option(employee, this.list, {
+    const employeeTemplate = new Option(employee, this.list, this.select, {
       searchEmployees: this.searchEmployees.bind(this)
     });
     employeeTemplate.render();
@@ -101,8 +102,9 @@ class Options {
   }
 
   render() {
-    $(this.parent).append(this.template);
+    this.parent.append(this.template);
     this.select.addClass('input--hasFocus');
+    this.input.focus();
   }
   
   remove() {

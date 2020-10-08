@@ -1,14 +1,16 @@
 
 const $ = require('jquery');
 const {setChosenEmployee} = require('./storage');
+const {makeHasValue}      = require('./input');
 
 
 class Option {
-  constructor(user, parent, config = {}) {
+  constructor(user, parent, select, config = {}) {
     this.id       = user.id;
     this.name     = user.name;
     this.src      = user.src;
     this.isChosen = user.isChosen;
+    this.select   = select;
     this.parent   = $(parent);
     this.template = $(this.getTemplate());
     this.userCard = this.template.find('.user-card');
@@ -40,6 +42,8 @@ class Option {
 
   chooseEmployee() {
     setChosenEmployee(this.id);
+    this.select.val(this.name);
+    makeHasValue(this.select);
     if(this.searchEmployees) this.searchEmployees();
   }
 
