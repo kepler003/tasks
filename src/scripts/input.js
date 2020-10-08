@@ -11,9 +11,10 @@ $('.js-input').on('keyup', (e) => {
 
 const checkIfHasValue = (e) => {
   const length = e.target.value.length;
+  const badInput = e.target.validity.badInput;
   
-  if(length !== 0) makeHasValue(e.target);
-  else             undoHasValue(e.target);
+  if(length !== 0 || badInput) makeHasValue(e.target);
+  else                         undoHasValue(e.target);
 }
 
 const makeHasValue = (input) => {
@@ -27,6 +28,11 @@ const undoHasValue = (input) => {
 
 // Validation
 
+$('.js-input[type=number]').on('keyup focusout', (e) => {
+  removeZeros(e);
+  checkIfHasValue(e);
+})
+
 $('.js-input[data-text]').on('keyup focusout', (e) => {
   validateText(e);
 });
@@ -34,6 +40,25 @@ $('.js-input[data-text]').on('keyup focusout', (e) => {
 $('.js-input[data-filled]').on('keyup focusout', (e) => {
   validateNotEmpty(e);
 })
+
+$('.js-input[data-minlength]').on('focusout', function(e) {
+  validateMinLength(e, $(this).attr('data-minlength'));
+})
+
+$('.js-input[data-numbers]').on('keyup focusout', (e) => {
+  validateNumbers(e);
+})
+
+$('.js-input[data-min]').on('keyup focusout', (e) => {
+  validateMin(e);
+  validateNumbers(e);
+})
+
+$('.js-input[data-step]').on('keyup focusout', (e) => {
+  validateStep(e);
+  validateNumbers(e);
+})
+
 
 const validateText = (e) => {
   const value = e.target.value;
@@ -43,7 +68,7 @@ const validateText = (e) => {
     makeInvalid(e.target, 'To pole nie może być puste');
     return;
   } else if(!value.match(regex)) {
-    makeInvalid(e.target, 'To pole może zawierać duże i małe litery, myślniki i kropki');
+    makeInvalid(e.target, 'To pole może zawierać tylko duże i małe litery, myślniki i kropki');
     return;
   };
   
@@ -61,6 +86,59 @@ const validateNotEmpty = (e) => {
   undoInvalid(e.target);
 }
 
+const validateMinLength = (e, minLength) => {
+  const value = e.target.value;
+
+  if(value.trim().length < minLength) {
+    makeInvalid(e.target, `To pole musi zawierać przynajmniej ${minLength} znaków`);
+    return;
+  };
+  
+  undoInvalid(e.target);
+}
+
+const validateNumbers = (e) => {
+  const value = e.target.value;
+  const badInput = e.target.validity.badInput;
+  const regex = /^[-0-9]*$/;
+
+  if(!value.match(regex)) {
+    makeInvalid(e.target, 'To pole może zawierać tylko liczby');
+    return;
+  } else if(badInput) {
+    makeInvalid(e.target, 'Nieprawidłowa wartość');
+    return;
+  }
+  
+  undoInvalid(e.target);
+}
+
+const validateMin = (e) => {
+  const value = e.target.value;
+  const min = e.target.attributes['data-min'].value;
+
+  if(value && value < min) {
+    e.target.value = min;
+    removeZeros(e);
+  };
+}
+
+const validateStep = (e) => {
+  const value = e.target.value;
+  const step = e.target.attributes['data-step'].value;
+  const modulo = value % step;
+
+  if(modulo) {
+    e.target.value = value - modulo;
+  }
+}
+
+const removeZeros = (e) => {
+  const value = e.target.value;
+  if(value.toString().length > 1) e.target.value = value.replace(/\b0+/g, '');
+}
+
+
 const makeInvalid = (input, message) => {
   styleInvalid(input);
   addError(input, message);
@@ -71,6 +149,7 @@ const undoInvalid = (input) => {
   removeError(input);
 }
 
+
 const styleInvalid = (input) => {
   $(input).addClass('input--invalid');
 }
@@ -78,6 +157,7 @@ const styleInvalid = (input) => {
 const unstyleInvalid = (input) => {
   $(input).removeClass('input--invalid');
 }
+
 
 const addError = (input, message) => {
   const error = $(input).siblings('.input__error')[0];

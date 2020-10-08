@@ -43,15 +43,20 @@
 
         <div class="input__box">
           <input
-            class="input"
-            data-empty=false
+            class="input js-input"
             data-minlength="5"
           >
           <label class="input__label">Nazwa zadania</label>
         </div>
 
         <div class="input__box">
-          <input class="input--number" type="number">
+          <input
+            class="input--number js-input"
+            type="number"
+            data-numbers
+            data-step="1"
+            data-min="0"
+          >
           <label class="input__label">Kwota w PLN</label>
         </div>
 
