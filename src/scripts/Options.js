@@ -49,11 +49,13 @@ class Options {
 
   render() {
     $(this.parent).append(this.template);
+    this.select.addClass('input--hasFocus');
   }
-
+  
   remove() {
     this.template.remove();
     this.removeListeners();
+    this.select.removeClass('input--hasFocus');
   }
 }
 
