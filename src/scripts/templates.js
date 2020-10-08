@@ -20,19 +20,23 @@ const optionsTemplate = () => {
   `;
 }
 
-const optionTemplate = ({
+const optionTemplate = () => {
+  return `
+    <li class="select__list-item"></li>
+  `;
+}
+
+const userCard = ({
   name = 'Anonymous',
   src,
   isChecked = false
 }) => {
   return `
-    <li class="select__list-item">
-      <div class="user-card user-card--isChosen">
-        <img src="${src}" alt="User avatar" class="user-card__avatar">
-        <p class="user-card__name">${name}</p>
-        ${isChecked ? '<i class="fas fa-check user-card__icon"></i>' : ''}
-      </div>
-    </li>
+    <div class="user-card user-card--isChosen">
+      <img src="${src}" alt="User avatar" class="user-card__avatar">
+      <p class="user-card__name">${name}</p>
+      ${isChecked ? '<i class="fas fa-check user-card__icon"></i>' : ''}
+    </div>
   `;
 }
 
@@ -69,6 +73,7 @@ module.exports = {
   errorTemplate,
   optionsTemplate,
   optionTemplate,
+  userCard,
   tasksRowTemplate,
   tasksRowEmptyTemplate
 }
