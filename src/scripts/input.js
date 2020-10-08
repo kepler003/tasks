@@ -27,11 +27,11 @@ const undoHasValue = (input) => {
 
 // Validation
 
-$('.js-input[data-validate="text"]').on('keyup focusout', (e) => {
+$('.js-input[data-text]').on('keyup focusout', (e) => {
   validateText(e);
 });
 
-$('.js-input[data-validate="not empty"]').on('keyup focusout', (e) => {
+$('.js-input[data-filled]').on('keyup focusout', (e) => {
   validateNotEmpty(e);
 })
 

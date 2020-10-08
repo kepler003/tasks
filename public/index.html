@@ -11,29 +11,25 @@
   <main class="app">
   
     <header class="employee">
-      
       <form class="employee__form">
-
         <div class="input__box">
           <input 
             class="input js-input"
-            data-validate="text"
+            data-text
             name="company"
           >
           <label class="input__label">Nazwa firmy</label>
         </div>
-
         <div class="input__box">
           <input
             class="input select js-input"
             name="employee"
-            data-validate="not empty"
+            data-filled
             readonly
           >
           <label class="input__label">Pracownik</label>
           <i class="fas fa-chevron-down input__icon"></i>
         </div>
-
       </form>
     </header>
 
@@ -46,7 +42,11 @@
       <form class="add-task__form">
 
         <div class="input__box">
-          <input class="input">
+          <input
+            class="input"
+            data-empty=false
+            data-minlength="5"
+          >
           <label class="input__label">Nazwa zadania</label>
         </div>
 
@@ -59,6 +59,7 @@
         <button class="add-task__submit button--primary button--w">Dodaj</button>
 
       </form>
+
     </article>
 
     <article class="tasks">
