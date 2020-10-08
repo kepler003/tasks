@@ -16,8 +16,11 @@ const openSelectOptions = (e) => {
   const height = e.target.offsetHeight;
   const width  = e.target.offsetWidth;
   const offset = $(e.target).offset();
+  const inputClass = $(e.target).attr('data-inputclass');
 
-  const selectOptions = $(optionsTemplate()).css({
+  const selectOptions = $(optionsTemplate({
+    inputClass: inputClass
+  })).css({
     'width': width,
     'left' : offset.left + 'px',
     'top'  : offset.top + height + 'px'

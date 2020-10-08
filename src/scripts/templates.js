@@ -5,12 +5,20 @@ const errorTemplate = (error) => {
   `;
 }
 
-const optionsTemplate = () => {
+const optionsTemplate = (config) => {
+
+  const {
+    inputClass = ''
+  } = config || {};
+
   return `
     <div class="select__box">
       <div class="select__header">
         <div class="input__box input__box--no-margin">
-          <input class="input--search input--gray" placeholder="Szukaj">
+          <input
+            class="input--search input--gray ${inputClass}"
+            placeholder="Szukaj"
+          >
           <i class="fas fa-search input__icon"></i>
         </div>
       </div>
@@ -26,16 +34,22 @@ const optionTemplate = () => {
   `;
 }
 
-const userCard = ({
-  name = 'Anonymous',
-  src,
-  isChecked = false
-}) => {
+const userCardTemplate = (user, config) => {
+  const {
+    name = 'Anonymous',
+    src,
+    isChosen = false
+  } = user || {};
+
+  const {
+    cardClass = ''
+  } = config || {};
+
   return `
-    <div class="user-card user-card--isChosen">
+    <div class="user-card ${isChosen ? 'user-card--isChosen' : ''} ${cardClass}">
       <img src="${src}" alt="User avatar" class="user-card__avatar">
       <p class="user-card__name">${name}</p>
-      ${isChecked ? '<i class="fas fa-check user-card__icon"></i>' : ''}
+      ${isChosen ? '<i class="fas fa-check user-card__icon"></i>' : ''}
     </div>
   `;
 }
@@ -73,7 +87,7 @@ module.exports = {
   errorTemplate,
   optionsTemplate,
   optionTemplate,
-  userCard,
+  userCardTemplate,
   tasksRowTemplate,
   tasksRowEmptyTemplate
 }
