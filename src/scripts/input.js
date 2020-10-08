@@ -41,8 +41,8 @@ $('.js-input[data-filled]').on('keyup focusout', (e) => {
   validateNotEmpty(e);
 })
 
-$('.js-input[data-minlength]').on('focusout', function(e) {
-  validateMinLength(e, $(this).attr('data-minlength'));
+$('.js-input[data-minlength]').on('focusout', (e) => {
+  validateMinLength(e);
 })
 
 $('.js-input[data-numbers]').on('keyup focusout', (e) => {
@@ -86,8 +86,9 @@ const validateNotEmpty = (e) => {
   undoInvalid(e.target);
 }
 
-const validateMinLength = (e, minLength) => {
+const validateMinLength = (e) => {
   const value = e.target.value;
+  const minLength = e.target.attributes['data-minlength'].value;
 
   if(value.trim().length < minLength) {
     makeInvalid(e.target, `To pole musi zawierać przynajmniej ${minLength} znaków`);
