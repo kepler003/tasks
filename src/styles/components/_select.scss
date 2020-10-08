@@ -13,6 +13,7 @@
     border: 1px solid $secondary;
     border-radius: $border-radius-sm;
     box-shadow: $shadow-xs;
+    position: absolute;
   }
 
   &__header {

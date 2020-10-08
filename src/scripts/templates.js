@@ -20,7 +20,11 @@ const optionsTemplate = () => {
   `;
 }
 
-const optionTemplate = ({name = 'Anonymous', src, isChecked = false}) => {
+const optionTemplate = ({
+  name = 'Anonymous',
+  src,
+  isChecked = false
+}) => {
   return `
     <li class="select__list-item">
       <div class="user-card user-card--isChosen">
@@ -33,11 +37,11 @@ const optionTemplate = ({name = 'Anonymous', src, isChecked = false}) => {
 }
 
 const tasksRowTemplate = ({
-  task,
-  price
+  task = 'Not named',
+  price = '???'
 }) => {
 
-  const priceEUR = Math.round(price / 4.8282 * 100) / 100;
+  const priceEUR = price != '???' ? Math.round(price / 4.8282 * 100) / 100 : '???';
 
   return `
     <tr class="tasks__row">
