@@ -4,7 +4,7 @@ const {setChosenEmployee} = require('./storage');
 
 
 class Option {
-  constructor(user, parent, config) {
+  constructor(user, parent, config = {}) {
     this.id       = user.id;
     this.name     = user.name;
     this.src      = user.src;
@@ -40,7 +40,7 @@ class Option {
 
   chooseEmployee() {
     setChosenEmployee(this.id);
-    this.searchEmployees();
+    if(this.searchEmployees) this.searchEmployees();
   }
 
   render() {
