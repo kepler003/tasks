@@ -53,25 +53,27 @@ let storage = {
       ]
     }
   ],
-  chosenEmployee: undefined,
-
-  searchByName(name) {
-    const employees = this.employees.filter(employee => {
-      return employee.name.toLowerCase().includes(name.toLowerCase());
-    });
-
-    return employees.map(employee => ({
-      ...employee,
-      isChosen: this.chosenEmployee === employee.id
-    }))
-  },
-
-  setChosenEmployee(id) {
-    this.chosenEmployee = id;
-  }
+  chosenEmployee: undefined
 }
 
+
+const searchByName = (name) => {
+  const employees = storage.employees.filter(employee => {
+    return employee.name.toLowerCase().includes(name.toLowerCase());
+  });
+
+  return employees.map(employee => ({
+    ...employee,
+    isChosen: storage.chosenEmployee === employee.id
+  }))
+}
+
+const setChosenEmployee = (id) => {
+  storage.chosenEmployee = id;
+}
+
+
 module.exports = {
-  searchByName     : storage.searchByName.bind(storage),
-  setChosenEmployee: storage.setChosenEmployee.bind(storage)
+  searchByName,
+  setChosenEmployee
 }
