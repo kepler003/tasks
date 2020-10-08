@@ -27,9 +27,13 @@ const undoHasValue = (input) => {
 
 // Validation
 
-$('.js-input[data-validate="text"').on('keyup focusout', (e) => {
+$('.js-input[data-validate="text"]').on('keyup focusout', (e) => {
   validateText(e);
 });
+
+$('.js-input[data-validate="not empty"]').on('keyup focusout', (e) => {
+  validateNotEmpty(e);
+})
 
 const validateText = (e) => {
   const value = e.target.value;
@@ -41,7 +45,18 @@ const validateText = (e) => {
   } else if(!value.match(regex)) {
     makeInvalid(e.target, 'To pole może zawierać duże i małe litery, myślniki i kropki');
     return;
-  }
+  };
+  
+  undoInvalid(e.target);
+}
+
+const validateNotEmpty = (e) => {
+  const value = e.target.value;
+
+  if(value.trim().length === 0) {
+    makeInvalid(e.target, 'To pole nie może być puste');
+    return;
+  };
   
   undoInvalid(e.target);
 }
