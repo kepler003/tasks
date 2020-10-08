@@ -15,12 +15,20 @@
       <form class="employee__form">
 
         <div class="input__box">
-          <input class="input">
+          <input 
+            class="input js-input"
+            data-validate="text"
+            name="company"
+          >
           <label class="input__label">Nazwa firmy</label>
         </div>
 
         <div class="input__box">
-          <input class="input select" readonly>
+          <input
+            class="input select"
+            name="company"
+            readonly
+          >
           <label class="input__label">Pracownik</label>
           <i class="fas fa-chevron-down input__icon"></i>
         </div>

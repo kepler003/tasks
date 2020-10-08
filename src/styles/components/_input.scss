@@ -6,9 +6,17 @@
   border: 1px solid $input-border-color;
   border-radius: $input-border-radius;
   transition: 150ms ease-out;
-
+  
   &:focus {
     border: 1px solid $primary;
+  }
+  
+  &--invalid {
+    border: 1px solid $danger;
+    
+    &:focus {
+      border: 1px solid $danger;
+    }
   }
   
   &--gray {
