@@ -4,7 +4,7 @@ let storage = {
     {
       id: 0,
       name: 'Adam Nowak',
-      src: './images/man1.jpg',
+      src: './public/images/man1.jpg',
       tasks: [
         {
           id: 1,
@@ -29,7 +29,7 @@ let storage = {
     {
       id: 1,
       name: 'Michał Potoczek',
-      src: './images/man2.jpg',
+      src: './public/images/man2.jpg',
       tasks: [
         {
           id: 1,
@@ -42,7 +42,7 @@ let storage = {
     {
       id: 2,
       name: 'Antoni Worek',
-      src: './images/man3.jpg',
+      src: './public/images/man3.jpg',
       tasks: [
         {
           id: 1,

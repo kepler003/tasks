@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p",
     "sass": "sass src/styles/styles.scss public/styles/styles.css --watch --style compressed",
-    "live": "live-server public",
+    "live": "live-server",
     "dev": "concurrently --kill-others \"npm run build\" \"npm run sass\" \"npm run live\""
   },
   "author": "Bartłomiej Pyzocha",
