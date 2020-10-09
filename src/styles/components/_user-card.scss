@@ -6,10 +6,15 @@
   padding: $size-xs $size;
 
   &__avatar {
+    @include flex-center;
     width: $size-xl;
     height: $size-xl;
     border-radius: $border-radius-max;
     overflow: hidden;
+
+    &-img {
+      width: 100%;
+    }
   }
 
   &__name {

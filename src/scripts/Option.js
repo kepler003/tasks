@@ -1,6 +1,6 @@
 
 const $ = require('jquery');
-const {makeHasValue}      = require('./input');
+const {makeHasValue} = require('./input');
 
 
 class Option {
@@ -21,7 +21,9 @@ class Option {
     return `
       <li class="select__list-item">
         <div class="user-card ${this.isChosen ? 'user-card--isChosen' : ''}">
-          <img src="${this.src}" alt="User avatar" class="user-card__avatar">
+          <div class="user-card__avatar">
+            <img src="${this.src}" alt="User avatar" class="user-card__avatar-img">
+          </div>
           <p class="user-card__name">${this.name}</p>
           ${this.isChosen ? '<i class="fas fa-check user-card__icon"></i>' : ''}
         </div>

@@ -50,6 +50,10 @@ class Options {
     $(this.input).on(`keyup`, () => {
       this.searchEmployees();
     });
+
+    $(window).on('click.optionsPosition, resize.optionsPosition, orientationchange.optionsPosition, keyup.optionsPosition', () => {
+      this.updatePosition();
+    })
   }
 
   removeListeners() {
@@ -59,6 +63,8 @@ class Options {
     this.templates.employees.forEach(templateEmployee => {
       templateEmployee.removeListeners();
     })
+
+    $(window).off('click.optionsPosition, resize.optionsPosition, orientationchange.optionsPosition, keyup.optionsPosition');
   }
 
   checkIfClickedOutside(e) {
@@ -99,6 +105,15 @@ class Options {
     });
 
     this.templates.employees = [];
+  }
+
+  updatePosition() {
+    this.style = {
+      "width" : `${$(this.select).outerWidth()}px`,
+      "top"   : `${$(this.select).offset().top + $(this.select).height()}px`,
+      "left"  : `${$(this.select).offset().left}px`
+    }
+    this.template.css(this.style);
   }
 
   render() {
