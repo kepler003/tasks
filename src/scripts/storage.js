@@ -7,16 +7,19 @@ let storage = {
       src: './images/man1',
       tasks: [
         {
+          id: 1,
           name: 'Zadanie 1',
           pricePLN: 2121,
           priceEUR: 122
         },
         {
+          id: 2,
           name: 'Zadanie 2',
           pricePLN: 2121,
           priceEUR: 122
         },
         {
+          id: 3,
           name: 'Zadanie 3',
           pricePLN: 2121,
           priceEUR: 122
@@ -29,6 +32,7 @@ let storage = {
       src: './images/man2',
       tasks: [
         {
+          id: 1,
           name: 'Zadanie 1',
           pricePLN: 2121,
           priceEUR: 122
@@ -41,11 +45,13 @@ let storage = {
       src: './images/man3',
       tasks: [
         {
+          id: 1,
           name: 'Zadanie 1',
           pricePLN: 2121,
           priceEUR: 122
         },
         {
+          id: 2,
           name: 'Zadanie 2',
           pricePLN: 2121,
           priceEUR: 122
@@ -72,8 +78,20 @@ const setChosenEmployee = (id) => {
   storage.chosenEmployee = id;
 }
 
+const getChosenEmployee = () => {
+  return storage.employees.find(employee => employee.id === storage.chosenEmployee);
+}
+
+const removeTask = (employeeId, taskId) => {
+  storage.employees[employeeId].tasks = storage.employees[employeeId].tasks.filter(task => {
+    return task.id.toString() != taskId.toString();
+  })
+}
+
 
 module.exports = {
   searchByName,
-  setChosenEmployee
+  setChosenEmployee,
+  getChosenEmployee,
+  removeTask
 }
