@@ -1,8 +1,8 @@
 
 const $ = require('jquery');
-const {setChosenEmployee}  = require('./storage');
-const {validateText}       = require('./input');
-const {checkIfFormIsValid} = require('./form');
+const {setChosenEmployee}  = require('./database/storage');
+const {validateText}       = require('./utils/input');
+const {checkIfFormIsValid} = require('./utils/form');
 
 
 $('.js-form--credentials').on('submit', function(e) {

@@ -1,8 +1,8 @@
 
 const $ = require('jquery');
-const {addTask}            = require('./storage');
-const {validateText}       = require('./input');
-const {checkIfFormIsValid} = require('./form');
+const {addTask}            = require('./database/storage');
+const {validateText}       = require('./utils/input');
+const {checkIfFormIsValid} = require('./utils/form');
 
 
 $('.js-add-task__form').on('submit', (e) => {

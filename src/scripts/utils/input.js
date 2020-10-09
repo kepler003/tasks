@@ -1,6 +1,6 @@
 
 const $ = require('jquery');
-const { errorTemplate } = require('./templates');
+const { errorTemplate } = require('../templates');
 
 
 // Label

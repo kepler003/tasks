@@ -1,6 +1,6 @@
 
 const $ = require('jquery');
-const {makeHasValue} = require('./input');
+const {makeHasValue} = require('../utils/input');
 
 
 class Option {

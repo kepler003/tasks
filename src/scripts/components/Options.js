@@ -1,6 +1,6 @@
 
 const $ = require('jquery');
-const {searchByName} = require('./storage');
+const {searchByName} = require('../database/storage');
 const Option         = require('./Option');
 
 

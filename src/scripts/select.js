@@ -1,6 +1,6 @@
 
 const $ = require('jquery');
-const Options = require('./Options');
+const Options = require('./components/Options');
 
 
 $('.js-select').on('click', (e) => {

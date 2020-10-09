@@ -61,6 +61,9 @@
 
   &__button {
     height: auto;
+
+    &-icon { pointer-events: none; }
+    &-label { pointer-events: none; }
   }
 
   &__sum {
