@@ -18,13 +18,12 @@ $('.js-select').on('click', (e) => {
 
 
 const validateForm = (e) => {
-  const dataText = $(e.target).find('.js-input[data-text]');
-  if(dataText.length) validateText($(dataText));
+  const invalidTextInputs = $(e.target).find('.js-input[data-text]');
+  if(invalidTextInputs.length) validateText($(invalidTextInputs));
 }
 
 const submitForm = (e) => {
   if(!checkIfFormIsValid($(e.target))) return;
-
   const userId = $(e.target).find('.js-select[name="employee"]').data('userId');
   setChosenEmployee(userId);
 }
