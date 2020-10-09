@@ -1,5 +1,4 @@
 
-require('./database/storage.js');
 require('./utils/input.js');
 require('./utils/form.js');
 require('./employee');
