@@ -60,8 +60,7 @@ let storage = {
     }
   ],
   chosenEmployee: undefined,
-  chosenEmployeeSubscribers: []
-
+  subscribers: []
 }
 
 
@@ -78,29 +77,50 @@ const searchByName = (name) => {
 
 const setChosenEmployee = (id) => {
   storage.chosenEmployee = id;
-
-  storage.chosenEmployeeSubscribers.forEach(subscriber => {
-    subscriber.chosenEmployeeChanged();
-  });
+  updateSubscribers();
 }
 
 const getChosenEmployee = () => {
   return storage.employees.find(employee => employee.id === storage.chosenEmployee);
 }
 
-const removeTask = (employeeId, taskId) => {
-  storage.employees[employeeId].tasks = storage.employees[employeeId].tasks.filter(task => {
+const addTask = (task) => {
+  storage.employees = storage.employees.map(employee => {
+    if(employee.id !== storage.chosenEmployee) return employee;
+
+    return ({
+      ...employee,
+      tasks: [...employee.tasks, {
+        id: employee.tasks[employee.tasks.length - 1].id + 1,
+        name: task.name,
+        pricePLN: task.price,
+        priceEUR: Math.round(task.price / 4.8282 * 100) / 100
+      }]
+    })
+  });
+
+  updateSubscribers();
+}
+
+const removeTask = (taskId) => {
+  storage.employees[storage.chosenEmployee].tasks = storage.employees[storage.chosenEmployee].tasks.filter(task => {
     return task.id.toString() != taskId.toString();
   })
 }
 
-const subscribeToChosenEmployee = (subscriber) => {
-  storage.chosenEmployeeSubscribers.push(subscriber);
+const subscribe = (subscriber) => {
+  storage.subscribers.push(subscriber);
 }
 
-const unsubscribeFromChosenEmployee = (subscriberToRemove) => {
-  storage.chosenEmployeeSubscribers = storage.chosenEmployeeSubscribers.filter(subscriber => {
+const unsubscribe = (subscriberToRemove) => {
+  storage.subscribers = storage.subscribers.filter(subscriber => {
     return !Object.is(subscriber, subscriberToRemove);
+  });
+}
+
+const updateSubscribers = () => {
+  storage.subscribers.forEach(subscriber => {
+    subscriber.storageUpdate();
   });
 }
 
@@ -109,7 +129,8 @@ module.exports = {
   searchByName,
   setChosenEmployee,
   getChosenEmployee,
+  addTask,
   removeTask,
-  subscribeToChosenEmployee,
-  unsubscribeFromChosenEmployee
+  subscribe,
+  unsubscribe
 }

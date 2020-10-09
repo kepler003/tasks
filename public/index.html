@@ -39,11 +39,12 @@
         <h2 class="add-task__heading">Zadania</h2>
       </header>
 
-      <form class="add-task__form">
+      <form class="add-task__form js-add-task__form">
 
         <div class="input__box">
           <input
             class="input js-input"
+            name="task-name"
             data-minlength="5"
           >
           <label class="input__label">Nazwa zadania</label>
@@ -53,6 +54,7 @@
           <input
             class="input--number js-input"
             type="number"
+            name="task-price"
             data-numbers
             data-step="1"
             data-min="0"

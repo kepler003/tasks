@@ -3,8 +3,8 @@ const $ = require('jquery');
 const {
   getChosenEmployee,
   removeTask,
-  subscribeToChosenEmployee,
-  unsubscribeFromChosenEmployee
+  subscribe,
+  unsubscribe
 } = require('./storage');
 
 
@@ -141,15 +141,15 @@ class Table {
     $(document).off('click.task-sort');
   }
 
-  subscribeToChosenEmployee() {
-    subscribeToChosenEmployee(this);
+  subscribeToStorage() {
+    subscribe(this);
   }
 
-  unsubscribeFromChosenEmployee() {
-    unsubscribeFromChosenEmployee(this);
+  unsubscribeFromStorage() {
+    unsubscribe(this);
   }
 
-  chosenEmployeeChanged() {
+  storageUpdate() {
     this.updateEmployee();
   }
 
@@ -177,7 +177,7 @@ class Table {
   }
 
   deleteTask(taskId) {
-    removeTask(this.employee.id, taskId);
+    removeTask(taskId);
     this.updateEmployee();
   }
 
@@ -257,13 +257,13 @@ class Table {
     this.parent.append(this.template);
     this.updateEmployee();
     this.addListeners();
-    this.subscribeToChosenEmployee();
+    this.subscribeToStorage();
   }
   
   remove() {
     this.template.remove();
     this.removeListeners();
-    this.unsubscribeFromChosenEmployee();
+    this.unsubscribeFromStorage();
   }
 }
 
