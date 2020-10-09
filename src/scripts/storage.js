@@ -59,7 +59,9 @@ let storage = {
       ]
     }
   ],
-  chosenEmployee: undefined
+  chosenEmployee: undefined,
+  chosenEmployeeSubscribers: []
+
 }
 
 
@@ -76,6 +78,10 @@ const searchByName = (name) => {
 
 const setChosenEmployee = (id) => {
   storage.chosenEmployee = id;
+
+  storage.chosenEmployeeSubscribers.forEach(subscriber => {
+    subscriber.chosenEmployeeChanged();
+  });
 }
 
 const getChosenEmployee = () => {
@@ -88,10 +94,22 @@ const removeTask = (employeeId, taskId) => {
   })
 }
 
+const subscribeToChosenEmployee = (subscriber) => {
+  storage.chosenEmployeeSubscribers.push(subscriber);
+}
+
+const unsubscribeFromChosenEmployee = (subscriberToRemove) => {
+  storage.chosenEmployeeSubscribers = storage.chosenEmployeeSubscribers.filter(subscriber => {
+    return !Object.is(subscriber, subscriberToRemove);
+  });
+}
+
 
 module.exports = {
   searchByName,
   setChosenEmployee,
   getChosenEmployee,
-  removeTask
+  removeTask,
+  subscribeToChosenEmployee,
+  unsubscribeFromChosenEmployee
 }

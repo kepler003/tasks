@@ -4,7 +4,7 @@ const Table = require('./Table');
 
 
 $(document).ready(() => {
-  renderTable();
+  const TableTemplate = renderTable();
 });
 
 
@@ -12,4 +12,5 @@ const renderTable = () => {
   const parent = $('.js-tasks');
   const TableTemplate = new Table(parent);
   TableTemplate.render();
+  return TableTemplate;
 }

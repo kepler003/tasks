@@ -1,6 +1,11 @@
 
 const $ = require('jquery');
-const {getChosenEmployee, setChosenEmployee, removeTask} = require('./storage');
+const {
+  getChosenEmployee,
+  removeTask,
+  subscribeToChosenEmployee,
+  unsubscribeFromChosenEmployee
+} = require('./storage');
 // const {makeHasValue}      = require('./input');
 
 
@@ -111,6 +116,14 @@ class Table {
     $(document).off('click.task');
   }
 
+  subscribeToChosenEmployee() {
+    subscribeToChosenEmployee(this);
+  }
+
+  chosenEmployeeChanged() {
+    this.updateEmployee();
+  }
+
   updateEmployee() {
     this.employee = getChosenEmployee();
     this.updateBody();
@@ -141,12 +154,15 @@ class Table {
 
   render() {
     this.parent.append(this.template);
+    this.updateEmployee();
     this.addListeners();
+    this.subscribeToChosenEmployee();
   }
   
   remove() {
     this.template.remove();
     this.removeListeners();
+    unsubscribeFromChosenEmployee(this);
   }
 }
 
