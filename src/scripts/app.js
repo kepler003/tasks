@@ -1,8 +1,9 @@
 
+require('./storage.js');
+require('./start');
 require('./input.js');
 require('./form.js');
-require('./storage.js');
+require('./credentials');
 require('./select.js');
-require('./table.js');
-require('./start');
 require('./addTask');
+require('./table.js');

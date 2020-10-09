@@ -7,7 +7,7 @@ $('.js-form').find('.js-input').on('keyup focusout change', (e) => {
 })
 
 const validateForm = (form) => {
-  checkIfInputsAreValid(form) ? makeValid(form) : makeInvalid(form);
+  checkIfFormIsValid(form) ? makeValid(form) : makeInvalid(form);
 }
 
 const makeValid = (form) => {
@@ -18,7 +18,12 @@ const makeInvalid = (form) => {
   form.addClass('form--invalid');
 }
 
-const checkIfInputsAreValid = (form) => {
-  const inputs = form.find('.input--invalid');
-  return !inputs.length;
+const checkIfFormIsValid = (form) => {
+  return form.find('.input--invalid').length === 0;
+}
+
+
+module.exports = {
+  validateForm,
+  checkIfFormIsValid
 }

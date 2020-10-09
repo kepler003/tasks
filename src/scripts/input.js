@@ -29,114 +29,112 @@ const undoHasValue = (input) => {
 // Validation
 
 $('.js-input[type=number]').on('keyup focusout', (e) => {
-  removeZeros(e);
-  checkIfHasValue(e);
+  removeZeros($(e.target));
+  checkIfHasValue($(e.target));
 })
 
 $('.js-input[data-text]').on('keyup focusout', (e) => {
-  validateText(e);
+  validateText($(e.target));
 });
 
 $(document).on('keyup focusout', '.js-input[data-filled]:not(.input--hasFocus)', (e) => {
-  validateNotEmpty(e);
+  validateNotEmpty($(e.target));
 })
 
 $('.js-input[data-minlength]').on('focusout', (e) => {
-  validateMinLength(e);
+  validateMinLength($(e.target));
 })
 
 $('.js-input[data-numbers]').on('keyup focusout', (e) => {
-  validateNumbers(e);
+  validateNumbers($(e.target));
 })
 
 $('.js-input[data-min]').on('keyup focusout', (e) => {
-  validateMin(e);
-  validateNumbers(e);
+  validateMin($(e.target));
+  validateNumbers($(e.target));
 })
 
 $('.js-input[data-step]').on('keyup focusout', (e) => {
-  validateStep(e);
-  validateNumbers(e);
+  validateStep($(e.target));
+  validateNumbers($(e.target));
 })
 
 
-const validateText = (e) => {
-  const value = e.target.value;
+const validateText = (input) => {
+  const value = $(input).val();
   const regex = /^[\s\p{L}.-]+$/u;
 
   if(value.trim().length === 0) {
-    makeInvalid(e.target, 'To pole nie może być puste');
+    makeInvalid(input, 'To pole nie może być puste');
     return;
   } else if(!value.match(regex)) {
-    makeInvalid(e.target, 'To pole może zawierać tylko duże i małe litery, myślniki i kropki');
+    makeInvalid(input, 'To pole może zawierać tylko duże i małe litery, myślniki i kropki');
     return;
   };
   
-  undoInvalid(e.target);
+  undoInvalid(input);
 }
 
-const validateNotEmpty = (e) => {
-  const value = e.target.value;
+const validateNotEmpty = (input) => {
+  const value = input.val();
 
   if(value.trim().length === 0) {
-    makeInvalid(e.target, 'To pole nie może być puste');
+    makeInvalid(input, 'To pole nie może być puste');
     return;
   };
   
-  undoInvalid(e.target);
+  undoInvalid(input);
 }
 
-const validateMinLength = (e) => {
-  const value = e.target.value;
-  const minLength = e.target.attributes['data-minlength'].value;
+const validateMinLength = (input) => {
+  const value = input.val();
+  const minLength = input.data('minlength');
 
   if(value.trim().length < minLength) {
-    makeInvalid(e.target, `To pole musi zawierać przynajmniej ${minLength} znaków`);
+    makeInvalid(input, `To pole musi zawierać przynajmniej ${minLength} znaków`);
     return;
   };
   
-  undoInvalid(e.target);
+  undoInvalid(input);
 }
 
-const validateNumbers = (e) => {
-  const value = e.target.value;
-  const badInput = e.target.validity.badInput;
+const validateNumbers = (input) => {
+  const value = input.val();
   const regex = /^[-0-9]*$/;
 
+  console.log(input);
+
   if(!value.match(regex)) {
-    makeInvalid(e.target, 'To pole może zawierać tylko liczby');
+    makeInvalid(input, 'To pole może zawierać tylko liczby');
     return;
-  } else if(badInput) {
-    makeInvalid(e.target, 'Nieprawidłowa wartość');
-    return;
-  }
+  };
   
-  undoInvalid(e.target);
+  undoInvalid(input);
 }
 
-const validateMin = (e) => {
-  const value = e.target.value;
-  const min = e.target.attributes['data-min'].value;
+const validateMin = (input) => {
+  const value = input.val();
+  const min = input.data('min');
 
   if(value && value < min) {
-    e.target.value = min;
-    removeZeros(e);
+    inputvalue = min;
+    removeZeros(input);
   };
 }
 
-const validateStep = (e) => {
-  const value = e.target.value;
-  const step = e.target.attributes['data-step'].value;
+const validateStep = (input) => {
+  const value = input.val();
+  const step = input.data('step');
   const modulo = value % step;
 
   if(modulo) {
-    e.target.value = value - modulo;
+    input.val(value - modulo);
   }
 }
 
-const removeZeros = (e) => {
-  const value = e.target.value;
-  if(value.toString().length > 1) e.target.value = value.replace(/\b0+/g, '');
+const removeZeros = (input) => {
+  const value = input.val();
+  if(value.toString().length > 1) input.val(value.replace(/\b0+/g, ''));
 }
 
 
@@ -178,5 +176,14 @@ const removeError = (input) => {
 
 
 module.exports = {
-  makeHasValue
+  makeHasValue,
+  validateText,
+  checkIfHasValue,
+  validateNotEmpty,
+  validateMinLength,
+  validateNumbers,
+  validateMin,
+  validateStep
 }
+
+

@@ -1,6 +1,5 @@
 
 const $ = require('jquery');
-const {setChosenEmployee} = require('./storage');
 const {makeHasValue}      = require('./input');
 
 
@@ -11,10 +10,10 @@ class Option {
     this.src      = user.src;
     this.isChosen = user.isChosen;
     this.select   = select;
+    this.form     = select.parents('.js-form--credentials');
     this.parent   = $(parent);
     this.template = $(this.getTemplate());
     this.userCard = this.template.find('.user-card');
-
     this.searchEmployees = config.searchEmployees;
   }
 
@@ -41,10 +40,17 @@ class Option {
   }
 
   chooseEmployee() {
-    setChosenEmployee(this.id);
+    this.select.data({
+      userId: this.id
+    })
+    this.form.submit();
     this.select.val(this.name);
     makeHasValue(this.select);
     if(this.searchEmployees) this.searchEmployees();
+  }
+
+  checkIfFormIsValid() {
+    return this.form.hasClass('form--invalid');
   }
 
   render() {

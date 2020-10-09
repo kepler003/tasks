@@ -91,7 +91,7 @@ const addTask = (task) => {
     return ({
       ...employee,
       tasks: [...employee.tasks, {
-        id: employee.tasks[employee.tasks.length - 1].id + 1,
+        id: employee.tasks[employee.tasks.length - 1] ? employee.tasks[employee.tasks.length - 1].id + 1 : 1,
         name: task.name,
         pricePLN: task.price,
         priceEUR: Math.round(task.price / 4.8282 * 100) / 100
