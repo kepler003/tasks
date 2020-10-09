@@ -59,24 +59,24 @@ class Options {
   removeListeners() {
     $(document).off(`mouseup.options`);
     $(this.input).off(`keyup`);
+    $(window).off('click.optionsPosition, resize.optionsPosition, orientationchange.optionsPosition, keyup.optionsPosition');
 
     this.templates.employees.forEach(templateEmployee => {
       templateEmployee.removeListeners();
     })
-
-    $(window).off('click.optionsPosition, resize.optionsPosition, orientationchange.optionsPosition, keyup.optionsPosition');
   }
 
   checkIfClickedOutside(e) {
-    if(!this.template.is(e.target) && this.template.has(e.target).length === 0) {
+    if(!this.template.is(e.target) 
+     && this.template.has(e.target).length === 0
+    ) {
       this.remove();
     }
   }
 
   searchEmployees() {
     this.searchName = this.input.val();
-    this.employees = searchByName(this.searchName);
-
+    this.employees  = searchByName(this.searchName);
     this.updateEmployees();
   }
 
@@ -86,24 +86,22 @@ class Options {
   }
 
   renderEmployees() {
-    this.employees.forEach(employee => {
-      this.renderEmployee(employee);
-    })
+    this.employees.forEach(employee => this.renderEmployee(employee));
   }
 
   renderEmployee(employee) {
-    const employeeTemplate = new Option(employee, this.list, this.select, {
-      searchEmployees: this.searchEmployees.bind(this)
-    });
+    const employeeTemplate = new Option(
+      employee, 
+      this.list, 
+      this.select, 
+      {searchEmployees: this.searchEmployees.bind(this)}
+    );
     employeeTemplate.render();
     this.templates.employees.push(employeeTemplate);
   }
 
   removeEmployees() {
-    this.templates.employees.forEach(emploeeTemplate => {
-      emploeeTemplate.remove();
-    });
-
+    this.templates.employees.forEach(employeeTemplate => employeeTemplate.remove());
     this.templates.employees = [];
   }
 
