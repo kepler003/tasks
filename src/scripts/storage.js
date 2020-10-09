@@ -10,19 +10,19 @@ let storage = {
           id: 1,
           name: 'Zadanie C',
           pricePLN: 2121,
-          priceEUR: 124
+          priceEUR: 439.29
         },
         {
           id: 2,
           name: 'Zadanie D',
           pricePLN: 2512,
-          priceEUR: 213
+          priceEUR: 520.27
         },
         {
           id: 3,
           name: 'Zadanie A',
           pricePLN: 6543,
-          priceEUR: 432
+          priceEUR: 1355.16
         }
       ]
     },
@@ -34,8 +34,8 @@ let storage = {
         {
           id: 1,
           name: 'Zadanie 1',
-          pricePLN: 2121,
-          priceEUR: 122
+          pricePLN: 1000,
+          priceEUR: 207.12
         }
       ]
     },
@@ -47,14 +47,14 @@ let storage = {
         {
           id: 1,
           name: 'Zadanie 1',
-          pricePLN: 2121,
-          priceEUR: 122
+          pricePLN: 1255,
+          priceEUR: 259.93
         },
         {
           id: 2,
           name: 'Zadanie 2',
-          pricePLN: 2121,
-          priceEUR: 122
+          pricePLN: 60,
+          priceEUR: 12.43
         }
       ]
     }

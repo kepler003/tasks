@@ -12,8 +12,11 @@ class Table {
   constructor(parent) {
     this.parent       = parent;
     this.employee     = getChosenEmployee();
+    this.sumPLN       = 0
+    this.sumEUR       = Math.round(this.sumPLN / 4.8282 * 100) / 100;
     this.template     = $(this.getTemplate());
     this.templateBody = this.template.find('.js-tasks__table-body');
+    this.sumTemplate  = this.template.siblings('.js-tasks__sum');
     this.sortType     = undefined;
   }
 
@@ -93,6 +96,8 @@ class Table {
         </tbody>
 
       </table>
+
+      <p class="tasks__sum js-tasks__sum">Suma: ${this.sumPLN} PLN (${this.sumEUR} Euro)</p>
     `;
   }
 
@@ -155,10 +160,19 @@ class Table {
 
   updateEmployee() {
     this.employee = getChosenEmployee();
-    this.updateBody();
+    this.updateBodyTemplate();
+    this.updateSum();
+    this.updateSumTemplate();
   }
 
-  updateBody() {
+  updateSum() {
+    let sum = 0;
+    this.employee ? this.employee.tasks.forEach(task => sum += task.pricePLN) : 0;
+    this.sumPLN = sum
+    this.sumEUR = Math.round(this.sumPLN / 4.8282 * 100) / 100;
+  }
+
+  updateBodyTemplate() {
     this.templateBody.empty();
 
     if(!this.employee) {
@@ -176,6 +190,12 @@ class Table {
     }
   }
 
+  updateSumTemplate() {
+    this.sumTemplate.text(`
+      Suma: ${this.sumPLN} PLN (${this.sumEUR} Euro)
+    `)
+  }
+
   deleteTask(taskId) {
     removeTask(taskId);
     this.updateEmployee();
@@ -184,7 +204,7 @@ class Table {
   setTaskSorting(sort) {
     this.sortType = sort;
     this.sortTasks();
-    this.updateBody();
+    this.updateBodyTemplate();
   }
 
   sortTasks() {
