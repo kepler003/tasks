@@ -100,7 +100,7 @@ class Table {
   }
 
   addListeners() {
-    $(document).on(`click.${this.employee.id}`, '.js-tasks__button--remove', (e) => {
+    $(document).on('click.task', '.js-tasks__button--remove', (e) => {
       if($(this.templateBody).has(e.target).length === 0) return;
 
       this.deleteTask($(e.target).data('index'));
@@ -108,7 +108,7 @@ class Table {
   }
 
   removeListeners() {
-    $(document).off(`click.${this.employee.id}`);
+    $(document).off('click.task');
   }
 
   updateEmployee() {
@@ -141,8 +141,6 @@ class Table {
 
   render() {
     this.parent.append(this.template);
-    setChosenEmployee(0); // REMOVE
-    this.updateEmployee();  // REMOVE
     this.addListeners();
   }
   
