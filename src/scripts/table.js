@@ -10,10 +10,11 @@ const {
 
 class Table {
   constructor(parent) {
-    this.parent = parent;
-    this.employee = getChosenEmployee();
-    this.template = $(this.getTemplate());
+    this.parent       = parent;
+    this.employee     = getChosenEmployee();
+    this.template     = $(this.getTemplate());
     this.templateBody = this.template.find('.js-tasks__table-body');
+    this.sortType     = undefined;
   }
 
   getTemplate() {
@@ -26,10 +27,16 @@ class Table {
               <div class="tasks__cell-box">
                 <span>Nazwa zadania</span>
                 <div class="tasks__th-buttons">
-                  <button class="tasks__th-button button--no-style">
+                  <button 
+                    class="tasks__th-button button--no-style js-task__th-button--sort"
+                    data-sort="from z"
+                  >
                     <span class="button__icon--triangle-up"></span>
                   </button>
-                  <button class="tasks__th-button button--no-style">
+                  <button 
+                    class="tasks__th-button button--no-style js-task__th-button--sort"
+                    data-sort="from a"
+                  >
                     <span class="button__icon--triangle-down"></span>
                   </button>
                 </div>
@@ -39,12 +46,18 @@ class Table {
               <div class="tasks__cell-box">
                 <span>Kwota w PLN</span>
                 <div class="tasks__th-buttons">
-                  <button class="tasks__th-button button--no-style">
+                  <button
+                    class="tasks__th-button button--no-style js-task__th-button--sort"
+                    data-sort="pln from lowest"
+                  >
                     <span class="button__icon--triangle-up"></span>
                   </button>
-                  <button class="tasks__th-button button--no-style">
+                  <button
+                    class="tasks__th-button button--no-style js-task__th-button--sort"
+                    data-sort="pln from highest"
+                  >
                     <span class="button__icon--triangle-down"></span>
-                  </button>
+                  </buttonclass=>
                 </div>
               </div>
             </th>
@@ -52,12 +65,18 @@ class Table {
               <div class="tasks__cell-box">
                 <span>Kwota w EUR</span>
                 <div class="tasks__th-buttons">
-                  <button class="tasks__th-button button--no-style">
+                  <button
+                    class="tasks__th-button button--no-style js-task__th-button--sort"
+                    data-sort="eur from lowest"
+                  >
                     <span class="button__icon--triangle-up"></span>
                   </button>
-                  <button class="tasks__th-button button--no-style">
+                  <button
+                    class="tasks__th-button button--no-style js-task__th-button--sort"
+                    data-sort="eur from highest"
+                  >
                     <span class="button__icon--triangle-down"></span>
-                  </button>
+                  </buttonclass=>
                 </div>
               </div>
             </th>
@@ -104,19 +123,30 @@ class Table {
   }
 
   addListeners() {
-    $(document).on('click.task', '.js-tasks__button--remove', (e) => {
+    $(document).on('click.task-remove', '.js-tasks__button--remove', (e) => {
       if($(this.templateBody).has(e.target).length === 0) return;
 
       this.deleteTask($(e.target).data('index'));
     })
+
+    $(document).on('click.task-sort', '.js-task__th-button--sort', (e) => {
+      if($(this.template).has(e.target).length === 0) return;
+
+      this.setTaskSorting($(e.target).data('sort'));
+    })
   }
 
   removeListeners() {
-    $(document).off('click.task');
+    $(document).off('click.task-remove');
+    $(document).off('click.task-sort');
   }
 
   subscribeToChosenEmployee() {
     subscribeToChosenEmployee(this);
+  }
+
+  unsubscribeFromChosenEmployee() {
+    unsubscribeFromChosenEmployee(this);
   }
 
   chosenEmployeeChanged() {
@@ -151,6 +181,78 @@ class Table {
     this.updateEmployee();
   }
 
+  setTaskSorting(sort) {
+    this.sortType = sort;
+    this.sortTasks();
+    this.updateBody();
+  }
+
+  sortTasks() {
+
+    switch(this.sortType) {
+      case 'from a': {
+        this.employee.tasks = this.employee.tasks.sort((taskA, taskB) => {
+          const nameA = taskA.name.toLowerCase();
+          const nameB = taskB.name.toLowerCase();
+          if(nameA < nameB) return -1;
+          if(nameA > nameB) return 1;
+          return 0;
+        });
+        break;
+      }
+      case 'from z': {
+        this.employee.tasks = (this.employee.tasks.sort((taskA, taskB) => {
+          const nameA = taskA.name.toLowerCase();
+          const nameB = taskB.name.toLowerCase();
+          if(nameA < nameB) return -1;
+          if(nameA > nameB) return 1;
+          return 0;
+        })).reverse();
+        break;
+      }
+      case 'pln from lowest': {
+        this.employee.tasks = this.employee.tasks.sort((taskA, taskB) => {
+          const priceA = taskA.pricePLN;
+          const priceB = taskB.pricePLN;
+          if(priceA < priceB) return -1;
+          if(priceA > priceB) return 1;
+          return 0;
+        });
+        break;
+      }
+      case 'pln from highest': {
+        this.employee.tasks = (this.employee.tasks.sort((taskA, taskB) => {
+          const priceA = taskA.pricePLN;
+          const priceB = taskB.pricePLN;
+          if(priceA < priceB) return -1;
+          if(priceA > priceB) return 1;
+          return 0;
+        })).reverse();
+        break;
+      }
+      case 'eur from lowest': {
+        this.employee.tasks = this.employee.tasks.sort((taskA, taskB) => {
+          const priceA = taskA.pricePLN;
+          const priceB = taskB.pricePLN;
+          if(priceA < priceB) return -1;
+          if(priceA > priceB) return 1;
+          return 0;
+        });
+        break;
+      }
+      case 'eur from highest': {
+        this.employee.tasks = (this.employee.tasks.sort((taskA, taskB) => {
+          const priceA = taskA.priceEUR;
+          const priceB = taskB.priceEUR;
+          if(priceA < priceB) return -1;
+          if(priceA > priceB) return 1;
+          return 0;
+        })).reverse();
+        break;
+      }
+    }
+  }
+
   render() {
     this.parent.append(this.template);
     this.updateEmployee();
@@ -161,7 +263,7 @@ class Table {
   remove() {
     this.template.remove();
     this.removeListeners();
-    unsubscribeFromChosenEmployee(this);
+    this.unsubscribeFromChosenEmployee();
   }
 }
 

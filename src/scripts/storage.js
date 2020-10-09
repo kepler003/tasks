@@ -8,21 +8,21 @@ let storage = {
       tasks: [
         {
           id: 1,
-          name: 'Zadanie 1',
+          name: 'Zadanie C',
           pricePLN: 2121,
-          priceEUR: 122
+          priceEUR: 124
         },
         {
           id: 2,
-          name: 'Zadanie 2',
-          pricePLN: 2121,
-          priceEUR: 122
+          name: 'Zadanie D',
+          pricePLN: 2512,
+          priceEUR: 213
         },
         {
           id: 3,
-          name: 'Zadanie 3',
-          pricePLN: 2121,
-          priceEUR: 122
+          name: 'Zadanie A',
+          pricePLN: 6543,
+          priceEUR: 432
         }
       ]
     },

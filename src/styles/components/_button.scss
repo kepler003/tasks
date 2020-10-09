@@ -71,6 +71,7 @@
     &--right { margin-left: $size-sm; }
 
     &--triangle-up {
+      pointer-events: none;
       width: 0;
       height: 0;
       border-left: $size-sm / 2 solid transparent;
@@ -79,6 +80,7 @@
     }
 
     &--triangle-down {
+      pointer-events: none;
       @extend .button__icon--triangle-up;
       border-left: $size-sm / 2 solid transparent;
       border-right: $size-sm / 2 solid transparent;
