@@ -22,80 +22,82 @@ class Table {
 
   getTemplate() {
     return `
-      <table class="tasks__table">
+      <div class="tasks__table-box">
+        <table class="tasks__table">
 
-        <thead>
-          <tr class="tasks__row">
-            <th scope="col" class="tasks__th tasks__cell">
-              <div class="tasks__cell-box">
-                <span>Nazwa zadania</span>
-                <div class="tasks__th-buttons">
-                  <button 
-                    class="tasks__th-button button--no-style js-task__th-button--sort"
-                    data-sort="from z"
-                  >
-                    <span class="button__icon--triangle-up"></span>
-                  </button>
-                  <button 
-                    class="tasks__th-button button--no-style js-task__th-button--sort"
-                    data-sort="from a"
-                  >
-                    <span class="button__icon--triangle-down"></span>
-                  </button>
+          <thead>
+            <tr class="tasks__row">
+              <th scope="col" class="tasks__th tasks__cell">
+                <div class="tasks__cell-box">
+                  <span>Nazwa zadania</span>
+                  <div class="tasks__th-buttons">
+                    <button 
+                      class="tasks__th-button button--no-style js-task__th-button--sort"
+                      data-sort="from z"
+                    >
+                      <span class="button__icon--triangle-up"></span>
+                    </button>
+                    <button 
+                      class="tasks__th-button button--no-style js-task__th-button--sort"
+                      data-sort="from a"
+                    >
+                      <span class="button__icon--triangle-down"></span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </th>
-            <th scope="col" class="tasks__th tasks__cell">
-              <div class="tasks__cell-box">
-                <span>Kwota w PLN</span>
-                <div class="tasks__th-buttons">
-                  <button
-                    class="tasks__th-button button--no-style js-task__th-button--sort"
-                    data-sort="pln from lowest"
-                  >
-                    <span class="button__icon--triangle-up"></span>
-                  </button>
-                  <button
-                    class="tasks__th-button button--no-style js-task__th-button--sort"
-                    data-sort="pln from highest"
-                  >
-                    <span class="button__icon--triangle-down"></span>
-                  </buttonclass=>
+              </th>
+              <th scope="col" class="tasks__th tasks__cell">
+                <div class="tasks__cell-box">
+                  <span>Kwota w PLN</span>
+                  <div class="tasks__th-buttons">
+                    <button
+                      class="tasks__th-button button--no-style js-task__th-button--sort"
+                      data-sort="pln from lowest"
+                    >
+                      <span class="button__icon--triangle-up"></span>
+                    </button>
+                    <button
+                      class="tasks__th-button button--no-style js-task__th-button--sort"
+                      data-sort="pln from highest"
+                    >
+                      <span class="button__icon--triangle-down"></span>
+                    </buttonclass=>
+                  </div>
                 </div>
-              </div>
-            </th>
-            <th scope="col" class="tasks__th tasks__cell">
-              <div class="tasks__cell-box">
-                <span>Kwota w EUR</span>
-                <div class="tasks__th-buttons">
-                  <button
-                    class="tasks__th-button button--no-style js-task__th-button--sort"
-                    data-sort="eur from lowest"
-                  >
-                    <span class="button__icon--triangle-up"></span>
-                  </button>
-                  <button
-                    class="tasks__th-button button--no-style js-task__th-button--sort"
-                    data-sort="eur from highest"
-                  >
-                    <span class="button__icon--triangle-down"></span>
-                  </buttonclass=>
+              </th>
+              <th scope="col" class="tasks__th tasks__cell">
+                <div class="tasks__cell-box">
+                  <span>Kwota w EUR</span>
+                  <div class="tasks__th-buttons">
+                    <button
+                      class="tasks__th-button button--no-style js-task__th-button--sort"
+                      data-sort="eur from lowest"
+                    >
+                      <span class="button__icon--triangle-up"></span>
+                    </button>
+                    <button
+                      class="tasks__th-button button--no-style js-task__th-button--sort"
+                      data-sort="eur from highest"
+                    >
+                      <span class="button__icon--triangle-down"></span>
+                    </buttonclass=>
+                  </div>
                 </div>
-              </div>
-            </th>
-            <th scope="col" class="tasks__th tasks__cell">
-              <div class="tasks__cell-box tasks__cell-box--center">
-                <span>Opcje</span>
-              </div>
-            </th>
-          </tr>
-        </thead>
+              </th>
+              <th scope="col" class="tasks__th tasks__cell">
+                <div class="tasks__cell-box tasks__cell-box--center">
+                  <span>Opcje</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
 
-        <tbody class="tasks__table-body js-tasks__table-body">
-          ${this.getEmptyRowTemplate()}
-        </tbody>
+          <tbody class="tasks__table-body js-tasks__table-body">
+            ${this.getEmptyRowTemplate()}
+          </tbody>
 
-      </table>
+        </table>
+      </div>
 
       <p class="tasks__sum js-tasks__sum">Suma: ${this.sumPLN} PLN (${this.sumEUR} Euro)</p>
     `;
@@ -112,7 +114,8 @@ class Table {
             class="tasks__button button--transparent js-tasks__button--remove" 
             data-index="${task.id}"
           >
-            <i class="fas fa-trash button__icon button__icon--left"></i> Usuń
+            <i class="fas fa-trash button__icon button__icon--left"></i>
+            <span class="tasks__button-label">Usuń</span>
           </button>
         </td>
       </tr>
