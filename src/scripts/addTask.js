@@ -2,7 +2,10 @@
 const $ = require('jquery');
 const Table = require('./components/Table');
 const {addTask}            = require('./database/storage');
-const {validateText}       = require('./utils/input');
+const {
+  validateMinLength,
+  validateNotEmpty
+}                          = require('./utils/input');
 const {checkIfFormIsValid} = require('./utils/form');
 
 
@@ -18,8 +21,11 @@ $(document).ready(() => {
 
 
 const validateForm = (e) => {
-  const invalidTextInputs = $(e.target).find('.js-input[data-text]');
-  if(invalidTextInputs.length) validateText($(invalidTextInputs));
+  const minLengthInputs = $(e.target).find('.js-input[data-minlength]');
+  if(minLengthInputs.length) validateMinLength($(minLengthInputs));
+  
+  const filledInputs = $(e.target).find('.js-input[data-filled]:not(.input--hasFocus)');
+  if(filledInputs.length) validateNotEmpty($(filledInputs));
 }
 
 const submitForm = (e) => {
