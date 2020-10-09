@@ -6,15 +6,14 @@ const { errorTemplate } = require('./templates');
 // Label
 
 $('.js-input').on('keyup', (e) => {
-  checkIfHasValue(e);
+  checkIfHasValue($(e.target));
 })
 
-const checkIfHasValue = (e) => {
-  const length = e.target.value.length;
-  const badInput = e.target.validity.badInput;
+const checkIfHasValue = (input) => {
+  const length = $(input).val().length;
   
-  if(length !== 0 || badInput) makeHasValue(e.target);
-  else                         undoHasValue(e.target);
+  if(length !== 0) makeHasValue(input);
+  else             undoHasValue(input);
 }
 
 const makeHasValue = (input) => {
@@ -50,8 +49,8 @@ $('.js-input[data-numbers]').on('keyup focusout', (e) => {
 })
 
 $('.js-input[data-min]').on('keyup focusout', (e) => {
-  validateMin($(e.target));
   validateNumbers($(e.target));
+  validateMin($(e.target));
 })
 
 $('.js-input[data-step]').on('keyup focusout', (e) => {
@@ -102,8 +101,6 @@ const validateNumbers = (input) => {
   const value = input.val();
   const regex = /^[-0-9]*$/;
 
-  console.log(input);
-
   if(!value.match(regex)) {
     makeInvalid(input, 'To pole może zawierać tylko liczby');
     return;
@@ -117,7 +114,7 @@ const validateMin = (input) => {
   const min = input.data('min');
 
   if(value && value < min) {
-    inputvalue = min;
+    input.val(min);
     removeZeros(input);
   };
 }
