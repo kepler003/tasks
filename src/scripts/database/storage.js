@@ -103,8 +103,13 @@ const addTask = (task) => {
 }
 
 const removeTask = (taskId) => {
-  storage.employees[storage.chosenEmployee].tasks = storage.employees[storage.chosenEmployee].tasks.filter(task => {
-    return task.id.toString() != taskId.toString();
+  storage.employees = storage.employees.map(employee => {
+    if(employee.id !== storage.chosenEmployee) return employee;
+
+    return {
+      ...employee,
+      tasks: employee.tasks.filter(task => task.id.toString() != taskId.toString())
+    }
   })
 }
 
