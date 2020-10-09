@@ -1,6 +1,5 @@
 
 const $ = require('jquery');
-const { errorTemplate } = require('../templates');
 
 
 // Label
@@ -160,7 +159,7 @@ const addError = (input, message) => {
   const inputBox = $(input).parent('.input__box');
   
   if(!error) {
-    $(inputBox).append(errorTemplate(message));
+    $(inputBox).append(getErrorTemplate(message));
   } else {
     $(error).text(message);
   }
@@ -169,6 +168,13 @@ const addError = (input, message) => {
 const removeError = (input) => {
   const error = $(input).siblings('.input__error')[0];
   $(error).remove();
+}
+
+
+const getErrorTemplate = (error) => {
+  return `
+    <span class="input__error">${error}</span>
+  `;
 }
 
 
