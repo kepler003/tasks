@@ -24,7 +24,6 @@ class Table {
     return `
       <div class="tasks__table-box">
         <table class="tasks__table">
-
           <thead>
             <tr class="tasks__row">
               <th scope="col" class="tasks__th tasks__cell">
@@ -91,14 +90,11 @@ class Table {
               </th>
             </tr>
           </thead>
-
           <tbody class="tasks__table-body js-tasks__table-body">
             ${this.getEmptyRowTemplate()}
           </tbody>
-
         </table>
       </div>
-
       <p class="tasks__sum js-tasks__sum">Suma: ${this.sumPLN} PLN (${this.sumEUR} Euro)</p>
     `;
   }
@@ -176,14 +172,10 @@ class Table {
   updateBodyTemplate() {
     this.templateBody.empty();
 
-    if(!this.employee) {
-      this.templateBody.append(this.getEmptyRowTemplate());
-    } else {
-      
-      if(!this.employee.tasks.length) {
-        this.templateBody.append(this.getEmptyRowTemplate());
-      } else {
-
+    if(!this.employee) this.templateBody.append(this.getEmptyRowTemplate());
+    else {
+      if(!this.employee.tasks.length) this.templateBody.append(this.getEmptyRowTemplate());
+      else {
         this.employee.tasks.forEach(task => {
           this.templateBody.append(this.getRowTemplate(task));
         });
@@ -192,9 +184,7 @@ class Table {
   }
 
   updateSumTemplate() {
-    this.sumTemplate.text(`
-      Suma: ${this.sumPLN} PLN (${this.sumEUR} Euro)
-    `)
+    this.sumTemplate.text(`Suma: ${this.sumPLN} PLN (${this.sumEUR} Euro)`);
   }
 
   deleteTask(taskId) {
