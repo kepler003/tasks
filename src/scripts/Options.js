@@ -9,12 +9,12 @@ class Options {
     this.select     = $(select);
     this.parent     = $('body');
     this.employees  = undefined;
-    this.config     = {
+    this.style      = {
       "width" : `${$(select).outerWidth()}px`,
       "top"   : `${$(select).offset().top + $(select).height()}px`,
       "left"  : `${$(select).offset().left}px`
     }
-    this.template   = $(this.getTemplate()).css(this.config);
+    this.template   = $(this.getTemplate()).css(this.style);
     this.input      = this.template.find('.js-input--select-search');
     this.searchName = undefined;
     this.list       = this.template.find('.select__list');

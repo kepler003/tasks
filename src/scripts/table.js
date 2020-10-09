@@ -6,7 +6,6 @@ const {
   subscribeToChosenEmployee,
   unsubscribeFromChosenEmployee
 } = require('./storage');
-// const {makeHasValue}      = require('./input');
 
 
 class Table {
